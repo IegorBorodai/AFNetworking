@@ -54,6 +54,16 @@ static dispatch_group_t url_request_operation_completion_group() {
     return af_url_request_operation_completion_group;
 }
 
+static dispatch_queue_t url_request_operation_completion_queue() {
+    static dispatch_queue_t af_url_request_operation_completion_queue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        af_url_request_operation_completion_queue = dispatch_queue_create("com.alamofire.networking.operation.queue", DISPATCH_QUEUE_CONCURRENT );
+    });
+
+    return af_url_request_operation_completion_queue;
+}
+
 static NSString * const kAFNetworkingLockName = @"com.alamofire.networking.operation.lock";
 
 NSString * const AFNetworkingErrorDomain = @"AFNetworkingErrorDomain";
@@ -221,7 +231,7 @@ static inline BOOL AFStateTransitionIsValid(AFOperationState fromState, AFOperat
                 block();
             });
 
-            dispatch_group_notify(group, queue, ^{
+            dispatch_group_notify(group, url_request_operation_completion_queue(), ^{
                 [strongSelf setCompletionBlock:nil];
             });
         }];
@@ -488,9 +498,11 @@ static inline BOOL AFStateTransitionIsValid(AFOperationState fromState, AFOperat
 {
     if (!operations || [operations count] == 0) {
         return @[[NSBlockOperation blockOperationWithBlock:^{
-            if (completionBlock) {
-                completionBlock(@[]);
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completionBlock) {
+                    completionBlock(@[]);
+                }
+            });
         }]];
     }
 
@@ -548,7 +560,7 @@ willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challe
     }
 
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        if ([self.securityPolicy evaluateServerTrust:challenge.protectionSpace.serverTrust]) {
+        if ([self.securityPolicy evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:challenge.protectionSpace.host]) {
             NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
             [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
         } else {
