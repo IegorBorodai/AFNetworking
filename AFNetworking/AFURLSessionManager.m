@@ -106,7 +106,7 @@ typedef void (^AFURLSessionTaskCompletionHandler)(NSURLResponse *response, id re
 @implementation AFURLSessionManagerTaskDelegate
 
 - (instancetype)init {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }
@@ -277,7 +277,7 @@ expectedTotalBytes:(int64_t)expectedTotalBytes {
 }
 
 - (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)configuration {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }
@@ -674,6 +674,7 @@ expectedTotalBytes:(int64_t)expectedTotalBytes {
                 break;
             case NSURLSessionTaskStateCompleted:
                 // AFNetworkingTaskDidFinishNotification posted by task completion handlers
+            case NSURLSessionTaskStateCanceling:
             default:
                 break;
         }

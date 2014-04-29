@@ -42,7 +42,6 @@ NSString * AFStringFromNetworkReachabilityStatus(AFNetworkReachabilityStatus sta
         case AFNetworkReachabilityStatusReachableViaWiFi:
             return NSLocalizedStringFromTable(@"Reachable via WiFi", @"AFNetworking", nil);
         case AFNetworkReachabilityStatusUnknown:
-        default:
             return NSLocalizedStringFromTable(@"Unknown", @"AFNetworking", nil);
     }
 }
@@ -137,7 +136,7 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
 }
 
 - (instancetype)initWithReachability:(SCNetworkReachabilityRef)reachability {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }

@@ -23,7 +23,7 @@
 #import "AFURLResponseSerialization.h"
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-#import <UIKit/UIKit.h>
+@import UIKit;
 #elif defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
 #import <Cocoa/Cocoa.h>
 #endif
@@ -88,7 +88,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 }
 
 - (instancetype)init {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }
@@ -203,7 +203,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 }
 
 - (instancetype)init {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }
@@ -313,7 +313,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 }
 
 - (instancetype)init {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }
@@ -358,7 +358,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 }
 
 - (instancetype)init {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }
@@ -441,7 +441,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 }
 
 - (instancetype)init {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }
@@ -613,7 +613,7 @@ static UIImage * AFInflatedImageFromResponseWithDataAtScale(NSHTTPURLResponse *r
 @implementation AFImageResponseSerializer
 
 - (instancetype)init {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }

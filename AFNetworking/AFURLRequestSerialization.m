@@ -23,7 +23,7 @@
 #import "AFURLRequestSerialization.h"
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
-#import <MobileCoreServices/MobileCoreServices.h>
+@import MobileCoreServices;
 #else
 #import <CoreServices/CoreServices.h>
 #endif
@@ -87,7 +87,7 @@ static NSString * AFPercentEscapedQueryStringValueFromStringWithEncoding(NSStrin
 @implementation AFQueryStringPair
 
 - (id)initWithField:(id)field value:(id)value {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }
@@ -181,7 +181,7 @@ NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 }
 
 - (instancetype)init {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }
@@ -558,7 +558,7 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
 - (id)initWithURLRequest:(NSMutableURLRequest *)urlRequest
           stringEncoding:(NSStringEncoding)encoding
 {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }
@@ -739,7 +739,7 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
 @implementation AFMultipartBodyStream
 
 - (id)initWithStringEncoding:(NSStringEncoding)encoding {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }
@@ -919,7 +919,7 @@ typedef enum {
 @implementation AFHTTPBodyPart
 
 - (id)init {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }

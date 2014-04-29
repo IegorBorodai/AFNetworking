@@ -22,7 +22,7 @@
 
 #import "AFSecurityPolicy.h"
 
-#import <AssertMacros.h>
+@import Darwin.AssertMacros;
 
 #if !defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 static NSData * AFSecKeyGetData(SecKeyRef key) {
@@ -187,7 +187,7 @@ static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
 }
 
 - (id)init {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }

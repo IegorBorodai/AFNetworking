@@ -23,7 +23,7 @@
 #import "AFURLConnectionOperation.h"
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-#import <UIKit/UIKit.h>
+@import UIKit;
 #endif
 
 #if !__has_feature(objc_arc)
@@ -188,7 +188,7 @@ static inline BOOL AFStateTransitionIsValid(AFOperationState fromState, AFOperat
 - (instancetype)initWithRequest:(NSURLRequest *)urlRequest {
     NSParameterAssert(urlRequest);
 
-    self = [super init];
+    (self = [super init]);
     if (!self) {
 		return nil;
     }

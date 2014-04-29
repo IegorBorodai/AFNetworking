@@ -73,7 +73,7 @@ static NSURLRequest * AFNetworkRequestFromNotification(NSNotification *notificat
 }
 
 - (id)init {
-    self = [super init];
+    (self = [super init]);
     if (!self) {
         return nil;
     }
